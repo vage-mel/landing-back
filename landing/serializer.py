@@ -56,7 +56,9 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_size(self, obj):
-        return obj.size.name
+        if obj.size:
+            return obj.size.name
+        return None
 
 
 class TestimonialSerializer(serializers.ModelSerializer):
