@@ -1,0 +1,11 @@
+media/
+static/
+pgdata/
+.idea
+*.rdb
+*.db
+*.sock
+*.json
+logs/
+__pycache__
+*.sqlite3
