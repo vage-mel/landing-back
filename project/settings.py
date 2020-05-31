@@ -24,7 +24,7 @@ SECRET_KEY = 'q*2ed2t99%q7%a(io2qm)q+@t_@4ea_^&607)-^bm__&d8r7ui'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['91.239.26.50']
+ALLOWED_HOSTS = ['91.239.26.50', '127.0.0.1']
 
 
 # Application definition
@@ -84,6 +84,14 @@ DATABASES = {
         'HOST': os.environ.get('POSTGRES_HOST')
     }
 }
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
