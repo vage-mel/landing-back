@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:9.5
+    restart: always
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_HOST
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
+    networks:
+      back:
+
+  web:
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/WebDockerFile
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_HOST
+    command: bash -c "python /code/manage.py collectstatic --noinput && python /code/manage.py migrate && uwsgi --ini /code/config/uwsgi.ini"
+    volumes:
+      - .:/code/
+    depends_on:
+      - db
+    networks:
+      back:
+
+  nginx_back:
+    restart: always
+    image: nginx:latest
+    command: nginx -g 'daemon off;'
+    volumes:
+      - .:/code/
+      - ./config/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - web
+    ports:
+      - "90:8000"
+    networks:
+      back:
+
+networks:
+  back:
