@@ -39,7 +39,9 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        return self.queryset.filter(status_id=self.request.GET.get('status_id'))
+        if self.request.GET.get('status_id'):
+            return self.queryset.filter(status_id=self.request.GET.get('status_id'))
+        return self.queryset
 
 
 class TestimonialViewSet(viewsets.ReadOnlyModelViewSet):
