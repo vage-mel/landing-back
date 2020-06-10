@@ -4,7 +4,7 @@ from suit.sortables import SortableTabularInline, SortableModelAdmin
 from .models import (
     Menu, Promo, Size, Trending, Status,
     Category, Product, Testimonial, Blog,
-    Feature
+    Feature, MainBlock
 )
 
 
@@ -13,6 +13,13 @@ class MenuAdmin(SortableModelAdmin):
     search_fields = ('name',)
     list_display = ('name',)
 
+    sortable = 'id'
+
+
+@admin.register(MainBlock)
+class MainBlockAdmin(SortableModelAdmin):
+    search_fields = ('title',)
+    list_display = ('title',)
     sortable = 'id'
 
 
