@@ -11,7 +11,7 @@ class MenuViewSet(viewsets.ReadOnlyModelViewSet):
 
 class MainBlockViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = MainBlock.objects.filter(is_active=True)
-    serializer_class = ProductSerializer
+    serializer_class = MainBlockSerializer
 
 
 class PromoViewSet(viewsets.ReadOnlyModelViewSet):
