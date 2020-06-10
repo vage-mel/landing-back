@@ -13,9 +13,25 @@ class Menu(models.Model):
         return self.name
 
 
+class MainBlock(models.Model):
+    title = models.CharField('Title', max_length=255)
+    subtitle = models.CharField('Subtitle', max_length=255)
+    is_active = models.BooleanField('Is Active?', default=False)
+    img = models.ImageField('Image', upload_to='images/main-block')
+    youtube_video_id = models.CharField('Youtube video id', max_length=255)
+
+    class Meta:
+        verbose_name = 'MainBlock'
+        verbose_name_plural = 'MainBlocks'
+
+    def __str__(self):
+        return self.title
+
+
 class Promo(models.Model):
     caption = models.CharField('Caption', max_length=255)
     title = models.CharField('Title', max_length=255)
+    subtitle = models.CharField('Subtitle', max_length=255)
     desc = models.CharField('Description', max_length=255)
     image = models.ImageField('Image', max_length=255, upload_to='images/promo')
     btn = models.CharField('Button', max_length=255)

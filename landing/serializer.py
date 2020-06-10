@@ -3,13 +3,19 @@ from rest_framework import serializers
 from .models import (
     Menu, Promo, Size, Status, Category,
     Product, Testimonial, Blog, Feature,
-    Trending
+    Trending, MainBlock
 )
 
 
 class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
+        fields = '__all__'
+
+
+class MainBlockSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MainBlock
         fields = '__all__'
 
 

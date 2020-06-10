@@ -6,6 +6,7 @@ from landing import views
 
 router = DefaultRouter()
 router.register(r'menu', views.MenuViewSet)
+router.register(r'main-block', views.MainBlockViewSet)
 router.register(r'promo', views.PromoViewSet)
 router.register(r'trending', views.TrendingViewSet)
 router.register(r'size', views.SizeViewSet)
